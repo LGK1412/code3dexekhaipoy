@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import OptimizedRoomViewer from './room-viewer-react';
+import OptimizedRoomViewer from './pages/_3DCoreScreen';
+
 import HomePage from './pages/HomePage';
 import AboutUs from './pages/AboutUs';
 // ... import thêm các trang khác nếu có
@@ -22,5 +22,3 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
-
-reportWebVitals();
