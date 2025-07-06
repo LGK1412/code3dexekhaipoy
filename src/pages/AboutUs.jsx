@@ -57,9 +57,7 @@ export default function AboutUs() {
                 <OurCEOSection />
             </BackgroundWrapper>
 
-            <BackgroundWrapper bgName="BG1" className="min-h-[550px] py-8">
-                <FooterSection />
-            </BackgroundWrapper>
+           <FooterSection bgName="BG1" />
         </>
     );
 }

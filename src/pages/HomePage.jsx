@@ -1,19 +1,36 @@
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import BannerCarousel from '../components/BannerCarousel';
+import BestsellerSection from '../components/BestsellerSection';
+import FooterSection from '../components/FooterSection';
+import BackgroundWrapper from '../components/BackgroundWrapper';
+import FurnitureCategorySection from '../components/FurnitureCategorySection';
+import SingleBanner from '../components/SingleBanner';
 
-// pages/HomePage.jsx
+
 export default function HomePage() {
-    const navigate = useNavigate();
+  return (
+    <div className="flex flex-col min-h-screen">
+      <NavBar />
+      <BannerCarousel />
 
-    const handleLogin = () => {
-        // xử lý login thành công xong chuyển trang
-        navigate('/about');
-    };
+      {/* Section with shared background image */}
+      <div
+        className="relative bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('/background/BG5.png')` }}
+      >
+        
 
-
-    return (
-        <div>
-            <h1>Trang chủ</h1>
-            <button onClick={handleLogin}>Đăng nhập</button>;
+        {/* Content over background */}
+        <div className="relative z-10">
+          <BestsellerSection />
+          <FurnitureCategorySection />
+          <SingleBanner />
         </div>
-    )
+      </div>
+
+      
+      <FooterSection bgName="BG1" />
+    </div>
+  );
 }

@@ -16,9 +16,15 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-15%)' },
         },
+        shake: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '20%, 60%': { transform: 'translateX(-4px)' },
+          '40%, 80%': { transform: 'translateX(4px)' },
+        },
       },
       animation: {
         'bounce-y': 'bounceY 1s ease-in-out infinite',
+        shake: 'shake 0.5s ease-in-out',
       },
     },
   },
