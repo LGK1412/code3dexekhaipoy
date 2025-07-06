@@ -6,6 +6,8 @@ import GLBModel from '../components/3d/GLBModel'
 import { useSnapshot } from 'valtio'
 import { state, modes } from '../utils/state'
 import { useThree } from '@react-three/fiber'
+import { Box3, Vector3 } from 'three'
+import BoundingBox from '../components/3d/BoundingBox'
 
 export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
     const directionalLightRef = useRef()
@@ -23,7 +25,7 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
     //     })
     // }, [models])
 
-
+    // Giới hạn phạm vi di chuyển
     useEffect(() => {
         const control = transform.current
         if (!control) return
@@ -32,8 +34,22 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
             const obj = control.object
             if (!obj) return
 
-            const min = { x: -4, y: 0.5, z: -7.5 } // min x = -x sàn / 2 + dày(z sàn) + 0.1  
-            const max = { x: 4, y: 8, z: 7.5 }
+            // Tính kích thước object hiện tại
+            const box = new Box3().setFromObject(obj)
+            const size = new Vector3()
+            box.getSize(size)
+
+            const padding = 0.1
+            const min = {
+                x: -4 + size.x / 2 + padding,
+                y: size.y / 2 + padding,
+                z: -7.5 + size.z / 2 + padding
+            }
+            const max = {
+                x: 4 - size.x / 2 - padding,
+                y: 8 - size.y / 2 + padding,
+                z: 7.5 - size.z / 2 - padding
+            }
 
             obj.position.x = Math.max(min.x, Math.min(max.x, obj.position.x))
             obj.position.y = Math.max(min.y, Math.min(max.y, obj.position.y))
@@ -68,37 +84,40 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
             <Room size={[1, 1, 1]} color="#ffffff" />
 
             {models.map(({ name, id }) => (
-                    <GLBModel
-                        id={id}
-                        name={name}
-                        position={[0, 0, 0]}
-                        ref={el => {
-                            if (el) modelRefs.current[id] = el
-                            else delete modelRefs.current[id]
-                        }}
-                        onSelect={() => {
-                            if (state.deleteMode) {
-                                setModels(prev => prev.filter(m => m.id !== id))
-                                if (state.current === id) state.current = null
-                                setPopupInfo(null)
-                            } else {
-                                state.current = id
-                                const menh = 'Hỏa'
-                                const huong = 'Bắc'
-                                setPopupInfo({ menh, huong, name })
-                            }
-                        }}
-                    />
+                <GLBModel
+                    id={id}
+                    name={name}
+                    position={[0, 0, 0]}
+                    ref={el => {
+                        if (el) modelRefs.current[id] = el
+                        else delete modelRefs.current[id]
+                    }}
+                    onSelect={() => {
+                        if (state.deleteMode) {
+                            setModels(prev => prev.filter(m => m.id !== id))
+                            if (state.current === id) state.current = null
+                            setPopupInfo(null)
+                        } else {
+                            state.current = id
+                            const menh = 'Hoả'
+                            const huong = 'Đông'
+                            setPopupInfo({ menh, huong, name })
+                        }
+                    }}
+                />
             ))}
 
             {snap.current && modelRefs.current[snap.current] && (
-                <TransformControls
-                    ref={transform}
-                    object={modelRefs.current[snap.current]}
-                    mode={modes[snap.mode]}
-                    onPointerDown={(e) => e.stopPropagation()}
-                    onPointerUp={(e) => e.stopPropagation()}
-                />
+                <>
+                    <BoundingBox object={modelRefs.current[snap.current]} />
+                    <TransformControls
+                        ref={transform}
+                        object={modelRefs.current[snap.current]}
+                        mode={modes[snap.mode]}
+                        onPointerDown={(e) => e.stopPropagation()}
+                        onPointerUp={(e) => e.stopPropagation()}
+                    />
+                </>
             )}
 
             {/* makeDefault để OrbitControls tự disable khi TransformControls active */}

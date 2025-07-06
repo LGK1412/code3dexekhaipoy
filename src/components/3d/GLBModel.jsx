@@ -4,6 +4,7 @@ import { useCursor } from '@react-three/drei'
 import { useSnapshot } from 'valtio'
 import { state, modes } from '../../utils/state'
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
+import { Box3, Vector3 } from 'three'
 
 useGLTF.preload('/3dObj/chair.glb')
 useGLTF.preload('/3dObj/bed.glb')
@@ -24,6 +25,13 @@ const GLBModel = forwardRef(({ id, name, onSelect }, ref) => {
                 child.receiveShadow = true
             }
         })
+
+        // ✅ Tính bounding box và log kích thước
+        const box = new Box3().setFromObject(cloned)
+        const size = new Vector3()
+        box.getSize(size)
+        console.log(`📦 Kích thước của ${name}:`, size)
+
         return cloned
     }, [scene])
 
