@@ -14,7 +14,7 @@ function Banner() {
           <span className="block italic drop-shadow sale-word">SALE</span>
         </div>
 
-        <div className="text-red-900 font-bold text-6xl sm:text-7xl md:text-8xl mt-2 percent-pop">
+        <div className="text-red-1900 font-bold text-6xl sm:text-7xl md:text-8xl mt-2 percent-pop">
           30%
         </div>
       </div>

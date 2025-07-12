@@ -65,6 +65,13 @@ code {
   z-index: -1;
   animation: glitchBottom 2s infinite steps(2, end);
 }
+.text-shadow-xl {
+  text-shadow:
+    3px 3px 0 #999,
+    6px 6px 0 #888,
+    9px 9px 0 #777,
+    12px 12px 0 #666;
+}
 
 @keyframes glitchTop {
   0% {
@@ -110,6 +117,37 @@ code {
     clip: rect(0, 9999px, 0, 0);
     transform: translate(0, 0);
   }
+  
 }
 
+:root {
+  /* Gradients */
+  --gradient-macha: linear-gradient(135deg, #a8e6cf, #dcedc1);
+  --gradient-orange-crush: linear-gradient(135deg, #ff9966, #ff5e62);
+  --gradient-lipstick: linear-gradient(135deg, #b92b27, #1565c0);
+  --gradient-purple-haze: linear-gradient(135deg, #8e2de2, #4a00e0);
+  --gradient-skyfall: linear-gradient(135deg, #43cea2, #185a9d);
+  --gradient-emerald-city: linear-gradient(135deg, #348f50, #56b4d3);
+  --gradient-summer-fair: linear-gradient(135deg, #f6d365, #fda085);
+
+  /* Flat colors */
+  --color-shockingly-green: #00ff90;
+  --color-surface-white: #ffffff;
+  --color-pink: #ff69b4;
+  --color-shockingly-pink: #ff00aa;
+  --color-orangey: #ffaa00;
+  --color-lilac: #c8a2c8;
+  --color-lt-green: #a8e6cf;
+  --color-blue: #0077ff;
+
+  /* Sticker background shades */
+  --grey-dark: #333;
+  --light: #fefefe;
+  --green: #4caf50;
+  --green-dark: #2e7d32;
+  --green-light: #81c784;
+  --red: #f44336;
+  --orange: #ff9800;
+  --purple: #9c27b0;
+}
 

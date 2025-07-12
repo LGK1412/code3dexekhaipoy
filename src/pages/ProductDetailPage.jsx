@@ -91,10 +91,12 @@ function ProductDetailPage() {
                 </p>
               </div>
 
-              <button className="mt-6 flex items-center gap-2 bg-red-800 text-white px-6 py-2 rounded-full hover:bg-red-700 transition-all duration-200">
-                <FontAwesomeIcon icon={faCartPlus} />
-                Add to Cart
-              </button>
+             <button className="mt-6 flex items-center gap-2 border border-red text-black px-6 py-2 rounded-full hover:bg-red hover:text-white transition-all duration-200">
+  <FontAwesomeIcon icon={faCartPlus} />
+  Add to Cart
+</button>
+
+
             </div>
           </div>
         </div>

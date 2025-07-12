@@ -6,8 +6,6 @@ import FooterSection from '../components/FooterSection';
 import BackgroundWrapper from '../components/BackgroundWrapper';
 import FurnitureCategorySection from '../components/FurnitureCategorySection';
 import SingleBanner from '../components/SingleBanner';
-
-
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -19,9 +17,6 @@ export default function HomePage() {
         className="relative bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('/background/BG5.png')` }}
       >
-        
-
-        {/* Content over background */}
         <div className="relative z-10">
           <BestsellerSection />
           <FurnitureCategorySection />
@@ -29,7 +24,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      
       <FooterSection bgName="BG1" />
     </div>
   );
