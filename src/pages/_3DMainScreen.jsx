@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react'
 import { SoftShadows, useHelper, OrbitControls, TransformControls } from '@react-three/drei'
 import { DirectionalLightHelper } from 'three'
 import Room from '../components/3d/room'
-import GLBModel from '../components/3d/GLBModel'
+import ModelLoader from '../components/3d/ModelLoader'
 import { useSnapshot } from 'valtio'
 import { state, modes } from '../utils/state'
 import { useThree } from '@react-three/fiber'
@@ -84,7 +84,8 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
             <Room size={[1, 1, 1]} color="#ffffff" />
 
             {models.map(({ name, id }) => (
-                <GLBModel
+                <ModelLoader
+                    key={id}
                     id={id}
                     name={name}
                     position={[0, 0, 0]}

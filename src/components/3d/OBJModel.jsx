@@ -1,22 +1,19 @@
-import { useGLTF } from '@react-three/drei'
-import { forwardRef, useEffect, useMemo, useState } from 'react'
+// OBJModel.jsx
+import { useLoader } from '@react-three/fiber'
 import { useCursor } from '@react-three/drei'
+import { forwardRef, useMemo, useState } from 'react'
 import { useSnapshot } from 'valtio'
-import { state, modes } from '../../utils/state'
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 import { Box3, Vector3 } from 'three'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { state, modes } from '../../utils/state'
 
-useGLTF.preload('/3dObj/chair.glb')
-useGLTF.preload('/3dObj/bed.glb')
-useGLTF.preload('/3dObj/wardrobe.glb')
-
-const GLBModel = forwardRef(({ id, name, onSelect }, ref) => {
-    const { scene } = useGLTF(`/3dObj/${name}`)
+const OBJModel = forwardRef(({ id, path, name, onSelect }, ref) => {
+    const scene = useLoader(OBJLoader, `/3dObj/${name}`)
     const [hovered, setHovered] = useState(false)
     const snap = useSnapshot(state)
     useCursor(hovered)
 
-    // ✅ Chỉ clone scene đúng 1 lần — tránh render lại không cần thiết
     const clonedScene = useMemo(() => {
         const cloned = clone(scene)
         cloned.traverse(child => {
@@ -25,8 +22,6 @@ const GLBModel = forwardRef(({ id, name, onSelect }, ref) => {
                 child.receiveShadow = true
             }
         })
-
-        // ✅ Tính bounding box và log kích thước
         const box = new Box3().setFromObject(cloned)
         const size = new Vector3()
         box.getSize(size)
@@ -54,9 +49,9 @@ const GLBModel = forwardRef(({ id, name, onSelect }, ref) => {
                 e.stopPropagation()
                 setHovered(true)
             }}
-            onPointerOut={e => setHovered(false)}
+            onPointerOut={() => setHovered(false)}
         />
     )
 })
 
-export default GLBModel
+export default OBJModel

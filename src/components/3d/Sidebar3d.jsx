@@ -10,19 +10,19 @@ export default function Sidebar({ addModel }) {
     const models = [
         {
             id: "ghe",
-            name: "chair",
+            name: "chair.glb",
             price: 15.00,
             image: "https://placehold.co/60x60",
         },
         {
             id: "tu",
-            name: "wardrobe",
+            name: "wardrobe.glb",
             price: 25.10,
             image: "https://placehold.co/60x60",
         },
         {
             id: "giuong",
-            name: "bed",
+            name: "indoor plant_02.obj",
             price: 35.00,
             image: "https://placehold.co/60x60",
         },
