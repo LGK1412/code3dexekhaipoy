@@ -8,8 +8,9 @@ import { state, modes } from '../utils/state'
 import { useThree } from '@react-three/fiber'
 import { Box3, Vector3 } from 'three'
 import BoundingBox from '../components/3d/BoundingBox'
+import GLBModel from '../components/3d/GLBModel'
 
-export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
+export default function _3DMainScreen({ models, setModels, setPopupInfo, roomType, roomGLB }) { // roomType, roomGLB sau này chỉnh xoá
     const directionalLightRef = useRef()
     const transform = useRef()
     const modelRefs = useRef({})
@@ -81,7 +82,18 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
                 castShadow
             />
             <ambientLight intensity={0.4} />
-            <Room size={[1, 1, 1]} color="#ffffff" />
+
+            {roomType === 'default' && (
+                <Room size={[1, 1, 1]} color="#ffffff" />
+            )}
+
+            {roomType === 'glb' && roomGLB && (
+                <GLBModel
+                    name={roomGLB}
+                    id="room"
+                    onSelect={() => { }}
+                />
+            )}
 
             {models.map(({ name, id }) => (
                 <ModelLoader
@@ -110,7 +122,7 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo }) {
 
             {snap.current && modelRefs.current[snap.current] && (
                 <>
-                    <BoundingBox object={modelRefs.current[snap.current]} />
+                    {/* <BoundingBox object={modelRefs.current[snap.current]} /> */}
                     <TransformControls
                         ref={transform}
                         object={modelRefs.current[snap.current]}

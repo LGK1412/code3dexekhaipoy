@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  safelist: [
+    'text-menh-thuy', 'bg-menh-thuy',
+    'text-menh-moc', 'bg-menh-moc',
+    'text-menh-tho', 'bg-menh-tho',
+    'text-menh-hoa', 'bg-menh-hoa',
+    'text-menh-kim', 'bg-menh-kim',
+  ],
+
   theme: {
     extend: {
       fontFamily: {
@@ -10,7 +18,11 @@ module.exports = {
         inria: ['"Inria Serif"', 'serif'],
       },
       colors: {
-        
+        'menh-thuy': '#020d7d',
+        'menh-moc': '#0d4f00',
+        'menh-tho': '#824903',
+        'menh-hoa': '#5d0000',
+        'menh-kim': '#c0c0c0',
         'shockingly-green': '#00ff90',
         'surface-white': '#ffffff',
         pink: '#ff69b4',

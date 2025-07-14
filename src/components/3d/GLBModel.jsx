@@ -6,10 +6,6 @@ import { state, modes } from '../../utils/state'
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 import { Box3, Vector3 } from 'three'
 
-useGLTF.preload('/3dObj/chair.glb')
-useGLTF.preload('/3dObj/bed.glb')
-useGLTF.preload('/3dObj/wardrobe.glb')
-
 const GLBModel = forwardRef(({ id, name, onSelect }, ref) => {
     const { scene } = useGLTF(`/3dObj/${name}`)
     const [hovered, setHovered] = useState(false)
@@ -30,7 +26,7 @@ const GLBModel = forwardRef(({ id, name, onSelect }, ref) => {
         const box = new Box3().setFromObject(cloned)
         const size = new Vector3()
         box.getSize(size)
-        console.log(`📦 Kích thước của ${name}:`, size)
+        // console.log(`📦 Kích thước của ${name}:`, size)
 
         return cloned
     }, [scene])

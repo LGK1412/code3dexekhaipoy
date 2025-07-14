@@ -10,21 +10,23 @@ import RegisterPage from './pages/RegisterPage'; // ✅ Thêm dòng này
 import CartPage from './pages/CartPage';
 import OptimizedRoomViewer from './pages/_3DCoreScreen';
 import ProductDetailPage from './pages/ProductDetailPage';
+import { PreloadAllModels } from './utils/preloadModels'
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-  <Route path="/" element={<HomePage />} />
-  <Route path="/about" element={<AboutUs />} />
-  <Route path="/viewer" element={<OptimizedRoomViewer />} />
-  
-  <Route path="/login" element={<LoginPage />} />
-  <Route path="/register" element={<RegisterPage />} /> 
-  <Route path="/cart" element={<CartPage />} />
-  <Route path="/shop" element={<ShopPage />} />
-  <Route path="/product/:id" element={<ProductDetailPage />} />
-</Routes>
+      <PreloadAllModels />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/viewer" element={<OptimizedRoomViewer />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
+      </Routes>
 
     </BrowserRouter>
   </React.StrictMode>

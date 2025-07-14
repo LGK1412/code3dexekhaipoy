@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { FaTrashAlt, FaQuestionCircle } from "react-icons/fa";
 import { state } from '../../utils/state';
 import { useSnapshot } from 'valtio';
+import RoomSwitcherPopup from './RoomSwitcherPopup'
 
-export default function BottomToolbar() {
+export default function BottomToolbar({ setRoomType, setRoomGLB, setModels }) { // mấy cái props bỏ dc
     const snap = useSnapshot(state);
     const [showTutorial, setShowTutorial] = useState(false);
     const tutorialRef = useRef();
@@ -49,6 +50,11 @@ export default function BottomToolbar() {
                 >
                     <FaQuestionCircle className="w-[35px] h-[35px] p-1.5" />
                 </button>
+                <RoomSwitcherPopup
+                    setRoomType={setRoomType}
+                    setRoomGLB={setRoomGLB}
+                    setModels={setModels}
+                />
             </div>
 
             {/* Tutorial popup */}

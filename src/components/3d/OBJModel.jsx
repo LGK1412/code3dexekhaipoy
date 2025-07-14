@@ -1,21 +1,27 @@
-// OBJModel.jsx
-import { useLoader } from '@react-three/fiber'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useCursor } from '@react-three/drei'
-import { forwardRef, useMemo, useState } from 'react'
 import { useSnapshot } from 'valtio'
-import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
+import { forwardRef } from 'react'
 import { Box3, Vector3 } from 'three'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { clone } from 'three/examples/jsm/utils/SkeletonUtils'
 import { state, modes } from '../../utils/state'
+import { loadOBJWithCache } from './objCache'
 
-const OBJModel = forwardRef(({ id, path, name, onSelect }, ref) => {
-    const scene = useLoader(OBJLoader, `/3dObj/${name}`)
+const OBJModel = forwardRef(({ id, name, onSelect }, ref) => {
+    const [object, setObject] = useState(null)
     const [hovered, setHovered] = useState(false)
     const snap = useSnapshot(state)
     useCursor(hovered)
 
+    useEffect(() => {
+        loadOBJWithCache(`/3dObj/file3dobj/${name}`)
+            .then(setObject)
+            .catch(err => console.error("Load OBJ error:", err))
+    }, [name])
+
     const clonedScene = useMemo(() => {
-        const cloned = clone(scene)
+        if (!object) return null
+        const cloned = clone(object)
         cloned.traverse(child => {
             if (child.isMesh) {
                 child.castShadow = true
@@ -25,10 +31,11 @@ const OBJModel = forwardRef(({ id, path, name, onSelect }, ref) => {
         const box = new Box3().setFromObject(cloned)
         const size = new Vector3()
         box.getSize(size)
-        console.log(`📦 Kích thước của ${name}:`, size)
 
         return cloned
-    }, [scene])
+    }, [object])
+
+    if (!clonedScene) return null
 
     return (
         <primitive
@@ -54,4 +61,4 @@ const OBJModel = forwardRef(({ id, path, name, onSelect }, ref) => {
     )
 })
 
-export default OBJModel
+export default React.memo(OBJModel)
