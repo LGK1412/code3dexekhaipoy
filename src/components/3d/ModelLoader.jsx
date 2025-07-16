@@ -2,12 +2,12 @@ import GLBModel from './GLBModel'
 import OBJModel from './OBJModel'
 
 const ModelLoader = (props) => {
-    const { name } = props
-    const isGLB = name.toLowerCase().endsWith('.glb')
+    const { model_name } = props
+    const isGLB = model_name.toLowerCase().endsWith('.glb')
 
     return isGLB
-        ? <GLBModel {...props} path={name} />
-        : <OBJModel {...props} path={name} />
+        ? <GLBModel {...props} path={model_name} />
+        : <OBJModel {...props} path={model_name} />
 }
 
 export default ModelLoader

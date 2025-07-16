@@ -17,7 +17,7 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo, roomTyp
     const snap = useSnapshot(state)
     const { gl } = useThree()
 
-    // useHelper(directionalLightRef, DirectionalLightHelper, 1, 'white')
+    useHelper(directionalLightRef, DirectionalLightHelper, 1, 'white')
 
     // Để sau này dùng
     // useEffect(() => {
@@ -76,7 +76,7 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo, roomTyp
             {/* <SoftShadows size={25} samples={20} /> */}
             <directionalLight
                 ref={directionalLightRef}
-                position={[-8, 10, -3]}
+                position={[-4, 10, 8]}
                 intensity={2.5}
                 color="#ffeb87"
                 castShadow
@@ -90,15 +90,17 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo, roomTyp
             {roomType === 'glb' && roomGLB && (
                 <GLBModel
                     name={roomGLB}
+                    model_name={roomGLB}
                     id="room"
                     onSelect={() => { }}
                 />
             )}
 
-            {models.map(({ name, id }) => (
+            {models.map(({ model_name, name, id }) => (
                 <ModelLoader
                     key={id}
                     id={id}
+                    model_name={model_name}
                     name={name}
                     position={[0, 0, 0]}
                     ref={el => {

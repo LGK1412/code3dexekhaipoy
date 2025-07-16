@@ -17,9 +17,9 @@ export default function _3DCoreScreen() {
   const [roomType, setRoomType] = useState('default') // hoặc 'glb'
   const [roomGLB, setRoomGLB] = useState(null) // ví dụ: 'room2.glb'
   // 
-  const addModel = (name) => {
+  const addModel = (model_name, name) => {
     const newId = Date.now().toString()
-    setModels(oldModels => [...oldModels, { name: name, id: newId }])
+    setModels(oldModels => [...oldModels, { model_name: model_name, name: name, id: newId }])
   }
 
   return (

@@ -6,8 +6,9 @@ import { state, modes } from '../../utils/state'
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 import { Box3, Vector3 } from 'three'
 
-const GLBModel = forwardRef(({ id, name, onSelect }, ref) => {
-    const { scene } = useGLTF(`/3dObj/${name}`)
+const GLBModel = forwardRef(({ id, model_name, onSelect }, ref) => {
+    
+    const { scene } = useGLTF(`/3dObj/${model_name}`)
     const [hovered, setHovered] = useState(false)
     const snap = useSnapshot(state)
     useCursor(hovered)

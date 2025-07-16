@@ -87,7 +87,7 @@ export default function Sidebar({ addModel }) {
                         <div key={model.id} className="relative mb-3">
                             {/* Nút dấu cộng */}
                             <button
-                                onClick={() => addModel(model.model_name)}
+                                onClick={() => addModel(model.model_name, model.name)}
                                 className={`absolute -top-2.5 -left-2.5 w-5 h-5 rounded-full border-none font-bold z-10 flex items-center justify-center p-0 ${colorClass}`}
                             >
                                 <FaCirclePlus size={14} />

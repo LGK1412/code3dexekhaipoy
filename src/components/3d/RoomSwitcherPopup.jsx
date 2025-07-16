@@ -3,15 +3,15 @@ import { FaHouse } from "react-icons/fa6";
 
 const rooms = [
     {
-        id: 'R1.glb',
-        model_name: 'R1.glb',
-        name: 'Phòng GLB 1',
+        id: 'R1_v6.glb',
+        model_name: 'R1_v6.glb',
+        name: 'Phòng 1',
         image: '/roomImage/1.png',
     },
     {
         id: 'default',
         model_name: '',
-        name: 'Default Room',
+        name: 'Phòng mặc định',
         image: '/roomImage/1.png',
     }
 ]
@@ -38,7 +38,7 @@ export default function RoomSwitcherPopup({ setRoomType, setRoomGLB, setModels }
             setRoomGLB(null)
         } else {
             setRoomType('glb')
-            setRoomGLB(room.id)
+            setRoomGLB(room.model_name)
         }
         setShowPopup(false)
     }
