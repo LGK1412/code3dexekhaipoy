@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { FaDoorOpen } from 'react-icons/fa'
+import { FaHouse } from "react-icons/fa6";
 
 const rooms = [
     {
@@ -8,6 +8,12 @@ const rooms = [
         name: 'Phòng GLB 1',
         image: '/roomImage/1.png',
     },
+    {
+        id: 'default',
+        model_name: '',
+        name: 'Default Room',
+        image: '/roomImage/1.png',
+    }
 ]
 
 export default function RoomSwitcherPopup({ setRoomType, setRoomGLB, setModels }) {
@@ -44,7 +50,7 @@ export default function RoomSwitcherPopup({ setRoomType, setRoomGLB, setModels }
                 onClick={() => setShowPopup(true)}
                 className="w-[35px] h-full flex items-center justify-center text-[10px] cursor-pointer text-white border-none bg-[#515151]"
             >
-                <FaDoorOpen className="w-[30px] h-[30px] p-1.5" />
+                <FaHouse className="w-[35px] h-[35px] p-1.5" />
             </button>
 
             {showPopup && (
