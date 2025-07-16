@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/code3dexekhaipoy/static/css/main.04ec3c9c.css",
+    "main.js": "/code3dexekhaipoy/static/js/main.128be0ca.js",
+    "index.html": "/code3dexekhaipoy/index.html",
+    "main.04ec3c9c.css.map": "/code3dexekhaipoy/static/css/main.04ec3c9c.css.map",
+    "main.128be0ca.js.map": "/code3dexekhaipoy/static/js/main.128be0ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.04ec3c9c.css",
+    "static/js/main.128be0ca.js"
+  ]
+}
