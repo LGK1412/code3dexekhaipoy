@@ -17,7 +17,7 @@ export default function _3DMainScreen({ models, setModels, setPopupInfo, roomTyp
     const snap = useSnapshot(state)
     const { gl } = useThree()
 
-    useHelper(directionalLightRef, DirectionalLightHelper, 1, 'white')
+    // useHelper(directionalLightRef, DirectionalLightHelper, 1, 'white')
 
     // Để sau này dùng
     // useEffect(() => {
